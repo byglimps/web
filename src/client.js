@@ -2,6 +2,8 @@ import React from 'react';
 import { hydrate } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { ensureReady, After } from '@jaredpalmer/after';
+
+import "./styles/normalize.css";
 import './client.css';
 import routes from './routes';
 
