@@ -2,11 +2,11 @@ import React, { Component, Fragment } from "react";
 import axios from "axios";
 import { parse, addDays, compareAsc } from "date-fns";
 
-import logo from "./assets/logo.svg";
+import logo from "../assets/logo.svg";
 import "./Home.css";
 
-import EventCard from "./shared/EventCard";
-import ContactButton from "./shared/ContactButton";
+import EventCard from "../shared/EventCard";
+import ContactButton from "../shared/ContactButton";
 
 const HomeOverlay = () => <div className="Home-overlay" />;
 
