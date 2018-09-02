@@ -1,13 +1,13 @@
-# Razzle x After.js
+# Glimps Web
+
+Server rendered app. We're using after.js for a next.js-like workflow.
 
 ## How to use
 
-Download the example [or clone the whole project](https://github.com/jaredpalmer/razzle.git):
-
 ```bash
-curl https://codeload.github.com/jaredpalmer/razzle/tar.gz/master | tar -xz --strip=2 razzle-master/examples/with-afterjs
-cd with-afterjs
+cd web
 ```
+Make sure you have a .env file setup with the host at the root of the web project. 
 
 Install it and run:
 
@@ -15,7 +15,3 @@ Install it and run:
 yarn install
 yarn start
 ```
-
-## Idea behind the example
-
-This is a basic, bare-bones example of how to use After.js and Razzle.
