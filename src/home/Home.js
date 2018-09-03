@@ -53,7 +53,7 @@ class Home extends Component {
                 <img src={logo} className="Home-logo" alt="logo" />
               </div>
               <div>
-                <ContactButton to={"jalvarado91@gmail.com"} className="button">
+                <ContactButton to={"glimpsco@gmail.com"} className="button">
                   Get glimps at your event
                 </ContactButton>
               </div>
