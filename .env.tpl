@@ -1,1 +1,1 @@
-GLIMPS_API_HOST=http://localhost:3000
+RAZZLE_GLIMPS_API_HOST=http://localhost:3000

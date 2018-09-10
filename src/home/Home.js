@@ -8,6 +8,8 @@ import "./Home.css";
 import EventCard from "../shared/EventCard";
 import ContactButton from "../shared/ContactButton";
 
+const { RAZZLE_GLIMPS_API_HOST } = process.env;
+
 const HomeOverlay = () => <div className="Home-overlay" />;
 
 const isBefore = (event, future) =>
@@ -24,21 +26,18 @@ const splitEventsByOccurrence = events => {
 };
 
 class Home extends Component {
-  static async getInitialProps({
-    req,
-    res,
-    match,
-    history,
-    location,
-    runtimeConfig,
-    ...ctx
-  }) {
-    let {
-      data: { data: events }
-    } = await axios.get(`${runtimeConfig.apiHost}/api/events?limit=20`);
+  static async getInitialProps({ req, res, match, history, location, ...ctx }) {
+    try {
+      let {
+        data: { data: events }
+      } = await axios.get(`${RAZZLE_GLIMPS_API_HOST}/api/events?limit=20`);
 
-    const eventsByOccurrence = splitEventsByOccurrence(events);
-    return eventsByOccurrence;
+      const eventsByOccurrence = splitEventsByOccurrence(events);
+      return eventsByOccurrence;
+    } catch (e) {
+      console.log("Error: ", e);
+      return { pastEvents: [], currentEvents: [] };
+    }
   }
 
   render() {
