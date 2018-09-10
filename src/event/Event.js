@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { parse, format } from "date-fns";
+import Lightbox from "react-images";
 
 import "./Event.css";
 
@@ -30,6 +31,11 @@ const getDateParts = dateString => {
 };
 
 class Event extends React.Component {
+  constructor() {
+    super();
+    this.state = { currentImage: 0 };
+  }
+
   static async getInitialProps({ req, res, match, history, location, ...ctx }) {
     const { params } = match;
     const { slug } = params;
@@ -45,6 +51,33 @@ class Event extends React.Component {
       return { event: null, glimpses: [] };
     }
   }
+
+  openLightbox = index => {
+    this.setState({
+      currentImage: index,
+      lightboxIsOpen: true
+    });
+  };
+
+  closeLightbox = () => {
+    this.setState({
+      currentImage: 0,
+      lightboxIsOpen: false
+    });
+  };
+
+  gotoPrevious = () => {
+    this.setState({
+      currentImage: this.state.currentImage - 1
+    });
+  };
+
+  gotoNext = () => {
+    this.setState({
+      currentImage: this.state.currentImage + 1
+    });
+  };
+
   render() {
     let { event, glimpses } = this.props;
 
@@ -58,9 +91,14 @@ class Event extends React.Component {
       );
     }
 
-    const { date, logoUrl, mainColor } = event;
+    const { date, logoUrl, mainColor, name: eventName } = event;
     const { month, day, year } = getDateParts(date);
     const numPics = glimpses.length;
+    const lightBoxImages = glimpses.map(tile => {
+      return {
+        src: tile.imageUrl
+      };
+    });
 
     return (
       <div className="Event">
@@ -73,7 +111,7 @@ class Event extends React.Component {
               <span className="event-date__year">{year}</span>
             </div>
             <div className="event-logo">
-              <img src={logoUrl} />
+              <img alt={eventName} src={logoUrl} />
             </div>
             <div className="event-stats">
               <span className="event-stats__count">{numPics}</span>
@@ -85,13 +123,25 @@ class Event extends React.Component {
           <Sheet>
             <div className="event-grid">
               {glimpses &&
-                glimpses.map(tile => (
+                glimpses.map((tile, idx) => (
                   <div key={tile.id} className="item">
-                    <button className="glimps-thumb">
-                      <img src={tile.imageUrl} />
+                    <button
+                      onClick={() => this.openLightbox(idx)}
+                      className="glimps-thumb"
+                    >
+                      <img alt={`${idx}`} src={tile.imageUrl} />
                     </button>
                   </div>
                 ))}
+              <Lightbox
+                images={lightBoxImages}
+                backdropClosesModal={true}
+                onClose={this.closeLightbox}
+                onClickPrev={this.gotoPrevious}
+                onClickNext={this.gotoNext}
+                currentImage={this.state.currentImage}
+                isOpen={this.state.lightboxIsOpen}
+              />
             </div>
           </Sheet>
         </div>
