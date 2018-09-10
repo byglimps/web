@@ -6,7 +6,7 @@ import "./EventCard.css";
 const EventCard = ({ event }) => {
   const date = format(parse(event.date), "MMMM Do, YYYY");
   return (
-    <Link to={"/"} className="event-card">
+    <Link to={`/event/${event.slug}`} className="event-card">
       <div className="main-image">
         <img src={event.mainImageUrl} alt={event.name} />
       </div>
