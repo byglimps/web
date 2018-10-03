@@ -115,6 +115,13 @@
   padding: 12px;
 }
 
+@media (max-width: 560px) {
+  .main-container .event-grid .item {
+    flex: 1 1 100%;
+    padding: 12px;
+  }
+}
+
 .main-container .glimps-thumb {
   background: none;
   border-radius: 5px;

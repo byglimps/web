@@ -58,7 +58,7 @@
 .Home-header .button:hover {
   border: 2px solid white;
   background: white;
-  color: #696BF2;
+  color: #696bf2;
   border-radius: 50px;
   font-weight: 600;
   padding: 12px 20px;
@@ -91,6 +91,13 @@
   display: inline-block;
   width: 33.33%;
   padding-left: 16px;
+}
+
+@media (max-width: 560px) {
+  .Home .events .grid-cell {
+    display: inline-block;
+    width: 100%;
+  }
 }
 
 .Home .events .event-card {
